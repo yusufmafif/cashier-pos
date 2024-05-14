@@ -10,7 +10,6 @@ export const Sidebar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { user } = useSelector((state) => state.auth)
-
     const token = localStorage.getItem("token")
     const role = jwtDecode(token).role
 
