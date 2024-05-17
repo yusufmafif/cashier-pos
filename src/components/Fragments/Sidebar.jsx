@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import { IoPerson, IoHome, IoLogOut, IoGift } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,22 @@ export const Sidebar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { user } = useSelector((state) => state.auth)
-    const token = localStorage.getItem("token")
-    const role = jwtDecode(token).role
+
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login");
+        }
+    }, [navigate]);
+
+    let role;
+    const token = localStorage.getItem("token");
+    if (token) {
+        role = jwtDecode(token).role;
+    } else {
+        role = null;
+    }
 
     const logout = () => {
         dispatch(LogOut())
@@ -33,9 +47,9 @@ export const Sidebar = () => {
                     <li>
                         <NavLink to={"/items"} style={{ display: 'flex', alignItems: 'center', gap: '2%' }}><IoGift />Items</NavLink>
                     </li>
-                    {user && user.role === "admin" && <li>
+                    <li>
                         <NavLink to={"/transactionslist"} style={{ display: 'flex', alignItems: 'center', gap: '2%' }}><FaMoneyBillWaveAlt />Transactions list</NavLink>
-                    </li>}
+                    </li>
                 </ul>
 
                 {role === "admin" && <div>

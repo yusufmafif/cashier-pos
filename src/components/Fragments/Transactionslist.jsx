@@ -27,7 +27,7 @@ function convertDate(date) {
     }, [])
 
     const getTransaction = async () => {
-        const response = await axios.get("http://localhost:5000/transaction")
+        const response = await axios.get(import.meta.env.VITE_SERVER + "/transaction")
         setTrans(response.data)
         console.log(response.data)
     }
@@ -57,11 +57,11 @@ function convertDate(date) {
                     {trans.map((tran, index) => (
                         <tr key={tran.id}>
                             <th>{index + 1}</th>
-                            <th>{convertDate(tran.sell_date)}</th>
-                            <th>Rp. {tran.total_price}</th>
-                            <th>{tran.payment_method}</th>
+                            <th>{convertDate(tran.createdAt)}</th>
+                            <th>Rp. {tran.totalPrice}</th>
+                            <th>{tran.paymentMethod}</th>
                             <th>{tran.customer}</th>
-                            <th>{tran.user_id}</th>
+                            <th>{tran.user.username}</th>
                             <th>
                                 <Link to={`/transaction/${tran.id}`} className="button is-small is-info mr-1">Detail</Link>
                                 <button onClick={() => { deleteUser(tran.id) }} className="button is-small is-danger">Delete</button>

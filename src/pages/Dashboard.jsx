@@ -11,7 +11,9 @@ export const Dashboard = () => {
     const navigate = useNavigate() 
     
     useEffect(() => {
+
         const token = localStorage.getItem("token");
+
         axios.get( import.meta.env.VITE_SERVER + "/me", {
             headers: {
                 Authorization: `Bearer ${token}`

@@ -12,10 +12,6 @@ export const Transactions = () => {
   const { isError, user } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    dispatch(getMe())
-  }, [dispatch])
-
-  useEffect(() => {
     if (isError) {
       navigate("/")
     }

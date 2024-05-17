@@ -34,7 +34,7 @@ const TransactionDetailList = () => {
   useEffect(() => {
     const getTransactionById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/transaction/${id}`)
+        const response = await axios.get( import.meta.env.VITE_SERVER `/transaction/${id}`)
         setData(response.data)
         setDate(response.data[0].transaction.sell_date)
 
