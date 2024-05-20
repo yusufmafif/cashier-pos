@@ -27,11 +27,14 @@ function convertDate(date) {
     }, [])
 
     const getTransaction = async () => {
-        const response = await axios.get(import.meta.env.VITE_SERVER + "/transaction")
+        const response = await axios.get(import.meta.env.VITE_SERVER + "/transaction",{
+            withCredentials: true
+        })
         setTrans(response.data)
-        console.log(response.data)
     }
 
+
+    
     const deleteUser = async (id) => {
         await axios.delete(`http://localhost:5000/transaction/${id}`)
         getTransaction()

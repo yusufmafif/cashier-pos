@@ -1,38 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import { IoPerson, IoHome, IoLogOut, IoGift } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../../features/authSlice";
 import { FaMoneyBillWaveAlt } from "react-icons/fa";
-import { jwtDecode } from "jwt-decode";
+import axios from 'axios';
 
 export const Sidebar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { user } = useSelector((state) => state.auth)
-
-
+    const [role, setRole] = useState("");
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            navigate("/login");
-        }
+        axios.get(import.meta.env.VITE_SERVER + '/me', { withCredentials: true })
+            .then(response => {
+                setRole(response.data.userData.role); // Menyimpan peran pengguna di state
+            })
+            .catch(error => {
+                console.error(error);
+                navigate("/login");
+            });
     }, [navigate]);
-
-    let role;
-    const token = localStorage.getItem("token");
-    if (token) {
-        role = jwtDecode(token).role;
-    } else {
-        role = null;
-    }
 
     const logout = () => {
         dispatch(LogOut())
         dispatch(reset())
         navigate("/")
-        localStorage.removeItem("token")
-        localStorage.removeItem("name")
     }
     return (
         <div>

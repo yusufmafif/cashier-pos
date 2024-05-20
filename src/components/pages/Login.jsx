@@ -6,20 +6,19 @@ import { useNavigate } from 'react-router-dom'
 import { getMe } from "../../features/authSlice"
 import React, { useEffect } from 'react'
 import axios from "axios"
-
+axios.defaults.withCredentials = true;
 const LoginPage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { token, name, id } = useSelector((state) => state.auth)
   useEffect(() => {
     if (token) {
-      localStorage.setItem("token", token)
       localStorage.setItem("name", name)
-      localStorage.setItem("id", id)
       axios.get(import.meta.env.VITE_SERVER + "/me", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        // headers: {
+        //   Authorization: `Bearer ${token}`
+        // }
+        withCredentials: true
       })
         .then((response) => {
           navigate("/dashboard")

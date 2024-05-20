@@ -8,16 +8,13 @@ import axios from 'axios'
 
 export const Dashboard = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate() 
-    
+    const navigate = useNavigate()
+
+
+
     useEffect(() => {
-
-        const token = localStorage.getItem("token");
-
-        axios.get( import.meta.env.VITE_SERVER + "/me", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+        axios.get(import.meta.env.VITE_SERVER + "/me", {
+            withCredentials: true
         })
             .then((response) => {
                 navigate("/dashboard")

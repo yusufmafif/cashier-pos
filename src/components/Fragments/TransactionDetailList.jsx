@@ -31,23 +31,21 @@ const TransactionDetailList = () => {
   }
 
 
-  useEffect(() => {
-    const getTransactionById = async () => {
-      try {
-        const response = await axios.get( import.meta.env.VITE_SERVER `/transaction/${id}`)
-        setData(response.data)
-        setDate(response.data[0].transaction.sell_date)
 
-      } catch (error) {
-        if (error.response) {
-          setMsg(error.response.data.msg)
-        }
+  const getTransactionById = async () => {
+    try {
+      const response = await axios.get(import.meta.env.VITE_SERVER + `/transaction/${id}`)
+      setData(response.data)
+      setDate(response.data[0].createdAt)
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg)
       }
     }
+  }
+  useEffect(() => {
     getTransactionById()
-  }, [id])
-
-
+  }, [])
 
   const handleSelectChange = (event) => {
     const value = event.target.value
@@ -57,7 +55,7 @@ const TransactionDetailList = () => {
   useEffect(() => {
     if (data.length > 0) {
       const totalPrice = data.reduce((a, item) => {
-        return a + item.item_price * item.item_qty;
+        return a + item.productPrice * item.quantity;
       }, 0);
       setTotalPrice(totalPrice);
     }
@@ -78,29 +76,29 @@ const TransactionDetailList = () => {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Name</th>
               <th>Price</th>
               <th>Qty</th>
               <th>Subtotal Price</th>
-              <th>Transaction ID</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
               <tr key={index}>
                 <td>
-                  {item.item_id}
+                  {item.transactionId}
                 </td>
                 <td>
-                  {item.item_price}
+                  {item.productName}
                 </td>
                 <td>
-                  {item.item_qty}
+                  {item.productPrice}
                 </td>
                 <td>
-                  {item.subtotal_price}
+                  {item.quantity}
                 </td>
                 <td>
-                  {item.transaction_id}
+                  {item.subTotalPrice}
                 </td>
               </tr>
             ))}

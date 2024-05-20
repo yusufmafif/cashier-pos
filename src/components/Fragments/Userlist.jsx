@@ -11,14 +11,9 @@ export const Userlist = () => {
     }, [])
 
     const getUsers = async () => {
-        const response = await axios.get(import.meta.env.VITE_SERVER + "/users",
-            {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            }
-        )
-
+        const response = await axios.get(import.meta.env.VITE_SERVER + "/users", {
+            withCredentials: true
+        })
         setUsers(response.data)
     }
 

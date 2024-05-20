@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-
+axios.defaults.withCredentials = true;
 const initialState = {
     user: null,
     name: '',
@@ -15,8 +15,12 @@ export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAP
     try {
         const response = await axios.post(import.meta.env.VITE_SERVER + '/login', {
             email: user.email,
-            password: user.password
-        })
+            password: user.password,
+        },
+        {
+            withCredentials: true
+        }
+    )
         return response.data
     } catch (error) {
         if (error.response) {
@@ -44,7 +48,11 @@ export const RegisterUser = createAsyncThunk('user/RegisterUser', async (user, t
 
 export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_SERVER + '/me')
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/me',
+        {
+            withCredentials: true
+        }
+        )
         return response.data
     } catch (error) {
         if (error.response) {

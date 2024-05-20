@@ -5,14 +5,25 @@ import axios from 'axios'
 
 export const ItemsList = () => {
     const [items, setItems] = useState([])
+    const [isDeleted, setIsDeleted] = useState(false)
 
     useEffect(() => {
         getItems()
     }, [])
 
     const getItems = async () => {
-        const response = await axios.get(import.meta.env.VITE_SERVER + '/products')
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/products', {
+            withCredentials: true
+        })
         setItems(response.data)
+        setIsDeleted(false)
+    }
+    const getItemsDeleted = async () => {
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/products/disabled', {
+            withCredentials: true
+        })
+        setItems(response.data)
+        setIsDeleted(true)
     }
 
     const deleteProduct = async (id) => {
@@ -32,6 +43,8 @@ export const ItemsList = () => {
             <h1 className="title">Items</h1>
             <h2 className="subtitle">List of Items</h2>
             <Link to="/items/add" className="button is-primary mb-2">Add New</Link>
+            {isDeleted ? <Link onClick={getItems} className="button is-link mb-2 mx-2">Active</Link> : <Link onClick={getItemsDeleted} className="button is-danger mb-2 mx-2">Non Active</Link>}
+
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
@@ -55,7 +68,7 @@ export const ItemsList = () => {
                             <th>{item.categoryName}</th>
                             <th>
                                 <Link to={`/product/edit/${item.id}`} className="button is-small is-info mr-1">Edit</Link>
-                                <button onClick={() => { deleteProduct(item.id) }} className="button is-small is-danger">Delete</button>
+                                <button onClick={() => { deleteProduct(item.id) }} className="button is-small is-danger">Deactivate </button>
                             </th>
                         </tr>
                     ))}
