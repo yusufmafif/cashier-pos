@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import { getMe } from "../../features/authSlice"
 import React, { useEffect } from 'react'
 import axios from "axios"
-axios.defaults.withCredentials = true;
 const LoginPage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
