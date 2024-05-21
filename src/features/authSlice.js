@@ -48,7 +48,7 @@ export const RegisterUser = createAsyncThunk('user/RegisterUser', async (user, t
 
 export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_SERVER + '/me', {
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/me', null, {
             withCredentials: true
         })
         return response.data
