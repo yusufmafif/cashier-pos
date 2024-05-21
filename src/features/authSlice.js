@@ -17,10 +17,10 @@ export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAP
             email: user.email,
             password: user.password,
         },
-        {
-            withCredentials: true
-        }
-    )
+            {
+                withCredentials: true
+            }
+        )
         return response.data
     } catch (error) {
         if (error.response) {
@@ -33,7 +33,7 @@ export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAP
 export const RegisterUser = createAsyncThunk('user/RegisterUser', async (user, thunkAPI) => {
     try {
         const response = await axios.post(import.meta.env.VITE_SERVER + '/register', {
-            username : user.username,
+            username: user.username,
             email: user.email,
             password: user.password
         })
@@ -48,15 +48,16 @@ export const RegisterUser = createAsyncThunk('user/RegisterUser', async (user, t
 
 export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
     try {
-        const response = await axios.get(import.meta.env.VITE_SERVER + '/me',
-        {
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/me', {
             withCredentials: true
-        }
-        )
+        })
         return response.data
     } catch (error) {
         if (error.response) {
             const message = error.response.data.msg;
+            return thunkAPI.rejectWithValue(message)
+        } else {
+            const message = error.message
             return thunkAPI.rejectWithValue(message)
         }
     }
@@ -104,13 +105,13 @@ export const authSlice = createSlice({
             state.isSuccess = true
             state.isError = false // Menetapkan isError kembali ke false
         })
-        
+
         builder.addCase(getMe.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
         })
-        
+
     }
 })
 
