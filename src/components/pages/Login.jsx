@@ -13,7 +13,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (token) {
       localStorage.setItem("name", name)
-      axios.get(import.meta.env.VITE_SERVER + "/me", null, {
+      axios.get(import.meta.env.VITE_SERVER + "/me", {
         withCredentials: true
       })
         .then((response) => {
