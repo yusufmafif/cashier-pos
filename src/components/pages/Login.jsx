@@ -17,12 +17,11 @@ const LoginPage = () => {
     if (token) {
       localStorage.setItem("name", name)
       axios.get(import.meta.env.VITE_SERVER + "/me", {
-        withCredentials : true,
-        credentials: 'include',
         headers: {
-          'Access-Control-Allow-Origin': '*', 
-          'Content-Type': 'application/json'
-      }
+          'Content-Type': 'application/json',
+          withCredentials: true,
+          credentials: 'include',
+        }
       })
         .then((response) => {
           navigate("/dashboard")
