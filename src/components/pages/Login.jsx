@@ -14,7 +14,7 @@ const LoginPage = () => {
     if (token) {
       localStorage.setItem("name", name)
       axios.get(import.meta.env.VITE_SERVER + "/me", {
-        withCredentials: true
+        credentials: "include"
       })
         .then((response) => {
           navigate("/dashboard")

@@ -18,7 +18,7 @@ export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAP
             password: user.password,
         },
             {
-                withCredentials: true
+                credentials: 'include'
             }
         )
         return response.data
