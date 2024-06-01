@@ -48,6 +48,7 @@ export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/me`, {
             withCredentials: true,
+            credentials: 'include'
         });
         return response.data;
     } catch (error) {
