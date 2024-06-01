@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { getMe } from "../../features/authSlice"
 import React, { useEffect } from 'react'
 import axios from "axios"
-axios.defaults.withCredentials = true;
+
 
 const LoginPage = () => {
+  axios.defaults.withCredentials = true;
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { token, name, id } = useSelector((state) => state.auth)
@@ -17,6 +18,7 @@ const LoginPage = () => {
       localStorage.setItem("name", name)
       axios.get(import.meta.env.VITE_SERVER + "/me", {
         withCredentials : true,
+        credentials: 'include',
         headers: {
           'Access-Control-Allow-Origin': '*', 
           'Content-Type': 'application/json'

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.withCredentials = true; // Mengatur default untuk mengirim cookie
+
 
 const initialState = {
     user: null,
@@ -14,12 +14,14 @@ const initialState = {
 };
 
 export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAPI) => {
+    axios.defaults.withCredentials = true;
     try {
         const response = await axios.post(`${import.meta.env.VITE_SERVER}/login`, {
             email: user.email,
             password: user.password,
         }, {
-            withCredentials: true
+            withCredentials: true,
+            credentials: 'include'
         });
         return response.data;
     } catch (error) {
