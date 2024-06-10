@@ -8,5 +8,8 @@ export default defineConfig({
     rollupOptions: {
       external: ['js-cookie']
     }
+  },
+  resolve: {
+    modules: ['node_modules']
   }
 })
