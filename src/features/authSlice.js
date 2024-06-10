@@ -14,14 +14,10 @@ const initialState = {
 };
 
 export const LoginUser = createAsyncThunk('user/LoginUser', async (user, thunkAPI) => {
-    axios.defaults.withCredentials = true;
     try {
         const response = await axios.post(`${import.meta.env.VITE_SERVER}/login`, {
             email: user.email,
             password: user.password,
-        }, {
-            withCredentials: true,
-            credentials: 'include'
         });
         return response.data;
     } catch (error) {
@@ -46,10 +42,7 @@ export const RegisterUser = createAsyncThunk('user/RegisterUser', async (user, t
 
 export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
     try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/me`, {
-            withCredentials: true,
-            credentials: 'include'
-        });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/me`);
         return response.data;
     } catch (error) {
         const message = error.response?.data?.msg || error.message;
@@ -59,9 +52,7 @@ export const getMe = createAsyncThunk('user/getMe', async (_, thunkAPI) => {
 
 export const LogOut = createAsyncThunk('user/LogOut', async (_, thunkAPI) => {
     try {
-        await axios.delete(`${import.meta.env.VITE_SERVER}/logout`, {
-            withCredentials: true
-        });
+        await axios.delete(`${import.meta.env.VITE_SERVER}/logout`);
     } catch (error) {
         const message = error.response?.data || error.message;
         return thunkAPI.rejectWithValue(message);

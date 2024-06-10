@@ -7,8 +7,8 @@ import { LoginUser, reset } from "../../features/authSlice";
 
 
 const FormLogin = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('afif@gmail.com');
+    const [password, setPassword] = useState('abuya313');
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth)

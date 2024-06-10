@@ -12,9 +12,7 @@ export const ItemsList = () => {
     }, [])
 
     const getItems = async () => {
-        const response = await axios.get(import.meta.env.VITE_SERVER + '/products', {
-            withCredentials: true
-        })
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/products')
         setItems(response.data)
         setIsDeleted(false)
     }

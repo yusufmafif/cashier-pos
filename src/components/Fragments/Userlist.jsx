@@ -11,9 +11,7 @@ export const Userlist = () => {
     }, [])
 
     const getUsers = async () => {
-        const response = await axios.get(import.meta.env.VITE_SERVER + "/users", {
-            withCredentials: true
-        })
+        const response = await axios.get(import.meta.env.VITE_SERVER + "/users")
         setUsers(response.data)
     }
 

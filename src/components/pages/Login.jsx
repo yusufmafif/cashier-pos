@@ -6,23 +6,21 @@ import { useNavigate } from 'react-router-dom'
 import { getMe } from "../../features/authSlice"
 import React, { useEffect } from 'react'
 import axios from "axios"
-
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
-  axios.defaults.withCredentials = true;
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { token, name, id } = useSelector((state) => state.auth)
   useEffect(() => {
     if (token) {
+      Cookies.set("token", token, { path: "/", expires: 1, secure: true, sameSite: "strict"} )
       localStorage.setItem("name", name)
-      axios.get(import.meta.env.VITE_SERVER + "/me", {
-        headers: {
-          'Content-Type': 'application/json',
-          withCredentials: true,
-          credentials: 'include',
+      axios.post(import.meta.env.VITE_SERVER + "/me", null ,{
+        headers : {
+            Authorization: `${token}`
         }
-      })
+     })
         .then((response) => {
           navigate("/dashboard")
         })

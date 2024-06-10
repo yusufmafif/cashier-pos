@@ -12,14 +12,12 @@ import AddUser from './pages/AddUser.jsx'
 import EditUser from './pages/EditUser.jsx'
 import EditItem from './pages/EditItem.jsx'
 import AddItems from './pages/AddItems.jsx'
-import axios from 'axios'
 import { Provider } from 'react-redux'
 import store from './components/app/store.js'
 import Transactions from './pages/Transactions.jsx'
 import TransactionDetail from './pages/TransactionDetail.jsx'
 
 
-axios.defaults.withCredentials = true
 
 const router = createBrowserRouter([
   {

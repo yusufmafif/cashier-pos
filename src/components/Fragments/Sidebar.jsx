@@ -5,13 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../../features/authSlice";
 import { FaMoneyBillWaveAlt } from "react-icons/fa";
 import axios from 'axios';
+import Cookies from "js-cookie";
 
 export const Sidebar = () => {
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [role, setRole] = useState("");
+    const token = Cookies.get("token");
     useEffect(() => {
-        axios.get(import.meta.env.VITE_SERVER + '/me', { withCredentials: true })
+        axios.post(import.meta.env.VITE_SERVER + "/me", null ,{
+            headers : {
+                Authorization: `${token}`
+            }
+         })
             .then(response => {
                 setRole(response.data.userData.role); // Menyimpan peran pengguna di state
             })
@@ -22,6 +29,7 @@ export const Sidebar = () => {
     }, [navigate]);
 
     const logout = () => {
+        Cookies.remove("token")
         dispatch(LogOut())
         dispatch(reset())
         navigate("/")

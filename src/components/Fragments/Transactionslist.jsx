@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Layout from '../../pages/Layout'
 import axios from 'axios'
 import { Link, Navigate } from 'react-router-dom'
+import Cookies from "js-cookie";
 
 export const Transactionslist = () => {
     const [trans, setTrans] = useState([])
-
+const token = Cookies.get("token")
 
 
 function convertDate(date) {
@@ -27,8 +28,10 @@ function convertDate(date) {
     }, [])
 
     const getTransaction = async () => {
-        const response = await axios.get(import.meta.env.VITE_SERVER + "/transaction",{
-            withCredentials: true
+        const response = await axios.get(import.meta.env.VITE_SERVER + "/transaction", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         })
         setTrans(response.data)
     }
