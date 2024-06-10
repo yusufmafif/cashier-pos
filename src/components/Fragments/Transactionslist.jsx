@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Layout from '../../pages/Layout'
 import axios from 'axios'
 import { Link, Navigate } from 'react-router-dom'
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 export const Transactionslist = () => {
     const [trans, setTrans] = useState([])

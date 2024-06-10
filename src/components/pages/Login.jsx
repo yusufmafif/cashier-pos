@@ -3,10 +3,9 @@ import AuthLayout from "../Elements/Layouts/AuthLayouts"
 import FormLogin from "../Fragments/FormLogin"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
-import { getMe } from "../../features/authSlice"
 import React, { useEffect } from 'react'
 import axios from "axios"
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 const LoginPage = () => {
   const dispatch = useDispatch()
