@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../../features/authSlice";
 import { FaMoneyBillWaveAlt } from "react-icons/fa";
 import axios from 'axios';
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 export const Sidebar = () => {
 

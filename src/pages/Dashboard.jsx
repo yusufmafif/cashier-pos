@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getMe } from '../features/authSlice'
 import axios from 'axios'
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 export const Dashboard = () => {
     const dispatch = useDispatch()
