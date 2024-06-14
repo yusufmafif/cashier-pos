@@ -16,7 +16,7 @@ export const Userlist = () => {
     }
 
     const deleteUser = async (id) => {
-        await axios.delete('https://belajarexpress.vercel.app' + `/users/${id}`,)
+        await axios.delete(import.meta.env.VITE_SERVER + `/users/${id}`,)
         getUsers()
     }
 
@@ -44,7 +44,7 @@ export const Userlist = () => {
                             <th>{user.role}</th>
                             <th>
                                 <Link to={`/users/edit/${user.id}`} className="button is-small is-info mr-1">Edit</Link>
-                                <button onClick={() => { deleteUser(user.uuid) }} className="button is-small is-danger">Delete</button>
+                                <button onClick={() => { deleteUser(user.id) }} className="button is-small is-danger">Delete</button>
                             </th>
                         </tr>
                     ))}

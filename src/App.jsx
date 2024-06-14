@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import Users from './pages/Users.jsx'
 import LoginPage from './components/pages/Login.jsx'
 import RegisterPage from './components/pages/Register.jsx'
-import Students  from './pages/Students.jsx'
+import Students from './pages/Students.jsx'
 import AddUser from './pages/AddUser.jsx'
 import EditUser from './pages/EditUser.jsx'
 import EditItem from './pages/EditItem.jsx'
@@ -22,58 +22,58 @@ import TransactionDetail from './pages/TransactionDetail.jsx'
 const router = createBrowserRouter([
   {
     path: "/dashboard",
-    element: <Dashboard/>
+    element: <Dashboard />
   },
   {
     path: "/users",
-    element: <Users/>
+    element: <Users />
   },
   {
     path: "/register",
-    element: <RegisterPage/>
+    element: <RegisterPage />
   },
   {
     path: "/login",
-    element: <LoginPage/>
+    element: <LoginPage />
   },
   {
     path: "/",
-    element: <LoginPage/>
+    element: <LoginPage />
   },
   {
     path: "/items",
-    element: <Students/>
+    element: <Students />
   },
   {
     path: "users/add",
-    element: <AddUser/>
+    element: <AddUser />
   },
   {
     path: "users/edit/:id",
-    element: <EditUser/>
+    element: <EditUser />
   },
   {
     path: "items/add",
-    element: <AddItems/>
+    element: <AddItems />
   },
   {
     path: "product/edit/:id",
-    element: <EditItem/>
+    element: <EditItem />
   },
   {
     path: "/transactionslist",
-    element: <Transactions/>
+    element: <Transactions />
   },
   {
     path: "/transaction/:id",
-    element: <TransactionDetail/>
+    element: <TransactionDetail />
   }
 ])
- 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 )

@@ -6,7 +6,6 @@ export const Welcome = () => {
   // const { user, token } = useSelector((state) => state.auth)
   const name = localStorage.getItem('name')
 
-  
   return (
     <div>
       <h1 className="title">Dashboard</h1>
