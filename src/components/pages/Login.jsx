@@ -14,6 +14,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (token) {
       Cookies.set("token", token, { path: "/", expires: 1, secure: true, sameSite: "strict"} )
+      Cookies.set("id", id, { path: "/", expires: 1, secure: true, sameSite: "strict"} )
       localStorage.setItem("name", name)
       axios.post(import.meta.env.VITE_SERVER + "/me", null ,{
         headers : {

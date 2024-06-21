@@ -23,7 +23,7 @@ export const Sidebar = () => {
                 setRole(response.data.userData.role); // Menyimpan peran pengguna di state
             })
             .catch(error => {
-                console.error(error);
+                console.error(error.response.data);
                 navigate("/login");
             });
     }, [navigate]);

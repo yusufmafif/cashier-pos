@@ -4,7 +4,7 @@ import { IoTrashOutline, } from "react-icons/io5"
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Button from "../Elements/Button";
 import { useSelector } from "react-redux";
-
+import Cookies from 'js-cookie';
 const Cashier = () => {
     const { user } = useSelector((state) => state.auth)
     const [query, setQuery] = useState('');
@@ -12,6 +12,7 @@ const Cashier = () => {
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
     const [msg, setMsg] = useState('')
+    const id = Cookies.get("id")
 
 
     const saveTransaction = async (e) => {
@@ -23,7 +24,7 @@ const Cashier = () => {
                     totalPrice: totalPrice,
                     paymentMethod: "cash",
                     discount: 13,
-                    userId: Number(localStorage.getItem('id')),
+                    userId: Number(id),
                     details: cart.map((item) => ({
                         productId: item.id,
                         quantity: item.quantity,

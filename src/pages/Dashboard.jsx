@@ -32,7 +32,9 @@ export const Dashboard = () => {
     }, []);
 
     return (
-        isAuthenticated && <Layout><Welcome /></Layout>
+        <Layout>
+            {isAuthenticated && <Welcome />}
+        </Layout>
     )
 }
 
