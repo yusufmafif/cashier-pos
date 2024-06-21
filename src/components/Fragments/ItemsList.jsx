@@ -28,12 +28,10 @@ export const ItemsList = () => {
         await axios.delete(import.meta.env.VITE_SERVER + `/products/${id}`)
         getItems()
     }
-
-    // function formatBirthDate(originalDate) {
-    //     const [year, month, day] = originalDate.slice(0, 10).split('-');
-    //     const formattedDate = `${day}-${month}-${year}`;
-    //     return formattedDate;
-    //   }
+    const activateProduct = async (id) => {
+        await axios.post(import.meta.env.VITE_SERVER + `/products/activate/${id}`)
+        getItems()
+    }
 
 
     return (
@@ -66,7 +64,8 @@ export const ItemsList = () => {
                             <th>{item.categoryName}</th>
                             <th>
                                 <Link to={`/product/edit/${item.id}`} className="button is-small is-info mr-1">Edit</Link>
-                                <button onClick={() => { deleteProduct(item.id) }} className="button is-small is-danger">Deactivate </button>
+                                {isDeleted ? <Link onClick={() => { activateProduct(item.id) }} className="button is-small is-danger">Activate </Link> : <button onClick={() => { deleteProduct(item.id) }} className="button is-small is-info">Deactivate </button>
+                                }
                             </th>
                         </tr>
                     ))}
