@@ -3,6 +3,7 @@ import Layout from '../../pages/Layout'
 import axios from 'axios'
 import { Link, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 export const Transactionslist = () => {
     const [trans, setTrans] = useState([])
@@ -39,15 +40,24 @@ export const Transactionslist = () => {
   
 
     const deleteUser = async (id, getTransaction) => {
-        const isConfirmed = window.confirm('Are you sure you want to delete this transaction?');
-        if (isConfirmed) {
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to delete this transaction?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        });
+    
+        if (result.isConfirmed) {
             try {
                 await axios.delete(`${import.meta.env.VITE_SERVER}/transaction/${id}`);
                 getTransaction();
-                alert('Transaction deleted successfully.');
+                Swal.fire('Deleted!', 'Transaction deleted successfully.', 'success');
             } catch (error) {
                 console.error('Failed to delete transaction:', error);
-                alert('Failed to delete transaction.');
+                Swal.fire('Error!', 'Failed to delete transaction.', 'error');
             }
         }
     };

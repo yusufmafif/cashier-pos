@@ -26,11 +26,13 @@ export const ItemsList = () => {
 
     const deleteProduct = async (id) => {
         await axios.delete(import.meta.env.VITE_SERVER + `/products/${id}`)
-        getItems()
+        getItemsDeleted()
     }
     const activateProduct = async (id) => {
         await axios.post(import.meta.env.VITE_SERVER + `/products/activate/${id}`)
-        getItems()
+        const response = await axios.get(import.meta.env.VITE_SERVER + '/products')
+        setItems(response.data)
+        
     }
 
 
