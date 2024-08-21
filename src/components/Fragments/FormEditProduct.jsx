@@ -4,7 +4,7 @@ import Button from "../Elements/Button";
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Label from '../Elements/Input/Label';
-import Swal from '../../../node_modules/sweetalert2/src/sweetalert2.js';
+import Swal from 'sweetalert2';
 
 const FormEditStudent = () => {
   const [barcode, setBarcode] = useState("")

@@ -3,7 +3,7 @@ import Layout from '../../pages/Layout'
 import axios from 'axios'
 import { Link, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
-import Swal from '../../../node_modules/sweetalert2/src/sweetalert2.js';
+import Swal from 'sweetalert2';
 
 export const Transactionslist = () => {
     const [trans, setTrans] = useState([])
