@@ -38,8 +38,8 @@ export const ItemsList = () => {
 
     return (
         <div>
-            <h1 className="title">Items</h1>
-            <h2 className="subtitle">List of Items</h2>
+            <h1 className="title ml-4">Items</h1>
+            <h2 className="subtitle ml-4">List of Items</h2>
             <Link to="/items/add" className="button is-primary mb-2">Add New</Link>
             {isDeleted ? <Link onClick={getItems} className="button is-link mb-2 mx-2">Active</Link> : <Link onClick={getItemsDeleted} className="button is-danger mb-2 mx-2">Non Active</Link>}
 

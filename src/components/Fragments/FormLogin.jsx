@@ -4,6 +4,8 @@ import InputForm from "../Elements/Input/index"
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, reset } from "../../features/authSlice";
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 const FormLogin = () => {
@@ -12,9 +14,22 @@ const FormLogin = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth)
+    const token = Cookies.get("token");
     useEffect(() => {
         if (user || isSuccess) {
-            navigate("/dashboard")
+            axios.post(import.meta.env.VITE_SERVER + "/me", null, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            })
+                .then(response => {
+                    setRole(response.data.userData.role); // Menyimpan peran pengguna di state
+                    navigate("/dashboard")
+                })
+                .catch(error => {
+                    console.error(error.response.data);
+                });
+
         }
         dispatch(reset())
     }, [user, isSuccess, dispatch, navigate])

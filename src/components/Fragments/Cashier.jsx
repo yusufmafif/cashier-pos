@@ -114,7 +114,7 @@ const Cashier = () => {
     return (
         <div>
             <h1 >{msg}</h1>
-            <h1 className="title">Cashier</h1>
+            <h1 className="title ml-4">Cashier</h1>
             <div className="card is-shadowless">
                 <div className="card-content column is-9">
                     <div className="content"></div>

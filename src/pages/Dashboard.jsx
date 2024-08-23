@@ -7,6 +7,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie';
 
 export const Dashboard = () => {
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const token = Cookies.get("token")
@@ -28,8 +29,12 @@ export const Dashboard = () => {
                 console.log(error)
                 navigate("/")
             })
+            .finally(() => setLoading(false));
 
     }, []);
+    if (loading) {
+        return <div>Loading...</div>; // Display loading indicator
+    }
 
     return (
         <Layout>

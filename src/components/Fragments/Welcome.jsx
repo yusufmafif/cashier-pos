@@ -7,9 +7,9 @@ export const Welcome = () => {
   const name = localStorage.getItem('name')
 
   return (
-    <div>
-      <h1 className="title">Dashboard</h1>
-      <h2 className="subtitle">Welcome Back <strong>{name}</strong></h2>
+    <div >
+      <h1 className="title ml-4">Dashboard</h1>
+      <h2 className="subtitle ml-4">Welcome Back <strong>{name}</strong></h2>
       <Cashier />
     </div>
   )
