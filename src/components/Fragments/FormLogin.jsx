@@ -15,11 +15,12 @@ const FormLogin = () => {
     const dispatch = useDispatch()
     const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth)
     const token = Cookies.get("token");
+    console.log(isSuccess)
     useEffect(() => {
         if (user || isSuccess) {
             axios.post(import.meta.env.VITE_SERVER + "/me", null, {
                 headers: {
-                    Authorization: `${token}`
+                    Authorization: `Bearer ${token}`
                 }
             })
                 .then(response => {
@@ -31,8 +32,23 @@ const FormLogin = () => {
                 });
 
         }
-        dispatch(reset())
-    }, [user, isSuccess, dispatch, navigate])
+        // dispatch(reset())
+    }, [user, dispatch, navigate])
+
+    // useEffect(() => {
+    //     axios.post(import.meta.env.VITE_SERVER + "/me", null, {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`
+    //         }
+    //     })
+    //         .then(response => {
+    //             setRole(response.data.userData.role); // Menyimpan peran pengguna di state
+    //         })
+    //         .catch(error => {
+    //             console.error(error.response.data);
+    //             navigate("/login");
+    //         });
+    // }, [navigate]);
 
     const emailRef = useRef(null);
 

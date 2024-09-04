@@ -10,7 +10,7 @@ export const Welcome = () => {
     <div >
       <h1 className="title ml-4">Dashboard</h1>
       <h2 className="subtitle ml-4">Welcome Back <strong>{name}</strong></h2>
-      <Cashier />
+      <Cashier/>
     </div>
   )
 }

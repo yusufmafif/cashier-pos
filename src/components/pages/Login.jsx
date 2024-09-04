@@ -18,7 +18,7 @@ const LoginPage = () => {
       localStorage.setItem("name", name)
       axios.post(import.meta.env.VITE_SERVER + "/me", null ,{
         headers : {
-            Authorization: `${token}`
+            Authorization: `Bearer ${token}`
         }
      })
         .then((response) => {

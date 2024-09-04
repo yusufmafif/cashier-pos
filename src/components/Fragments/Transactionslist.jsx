@@ -4,6 +4,8 @@ import axios from 'axios'
 import { Link, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
+import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 
 export const Transactionslist = () => {
     const [trans, setTrans] = useState([])
@@ -88,8 +90,8 @@ export const Transactionslist = () => {
                             {/* <th>{tran.customer}</th> */}
                             <th>{tran.user.username}</th>
                             <th>
-                                <Link to={`/transaction/${tran.id}`} className="button is-small is-info mr-1">Detail</Link>
-                                <button onClick={() => { deleteUser(tran.id, getTransaction) }} className="button is-small is-danger">Delete</button>
+                                <Link to={`/transaction/${tran.id}`} className="button is-small is-info mr-1"><FaRegEdit/></Link>
+                                <button onClick={() => { deleteUser(tran.id, getTransaction) }} className="button is-small is-danger"><MdDelete /></button>
                             </th>
                         </tr>
                     ))}

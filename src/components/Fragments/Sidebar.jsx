@@ -22,7 +22,7 @@ export const Sidebar = () => {
     useEffect(() => {
         axios.post(import.meta.env.VITE_SERVER + "/me", null, {
             headers: {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then(response => {
@@ -42,7 +42,7 @@ export const Sidebar = () => {
     }
     return (
         <div>
-                <aside className="is-hidden-mobile ml-2 mt-2">
+            <aside className="is-hidden-mobile ml-2 mt-2">
                     <p className="menu-label">
                         General
                     </p>

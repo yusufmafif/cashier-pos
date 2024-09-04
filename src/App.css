@@ -32,8 +32,21 @@
     cursor: pointer;
 }
 
+
+@media (min-width: 1200px) {
+    .cashier {
+        max-width: 80%;
+        /* margin-inline: auto; */
+    }
+}
+
+
 @media (max-width: 768px) {
     .burger-button {
         display: block;
+    }
+
+    .table {
+        font-size: 0.8rem;
     }
 }
